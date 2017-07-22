@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-StackTrace
 Version  : 2.02
-Release  : 3
+Release  : 4
 URL      : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.02.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.02.tar.gz
 Summary  : 'An object representing a stack trace'
@@ -30,6 +30,9 @@ doc components for the perl-Devel-StackTrace package.
 %setup -q -n Devel-StackTrace-2.02
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
@@ -43,7 +46,7 @@ fi
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make TEST_VERBOSE=1 test
 
 %install
@@ -60,8 +63,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.24.0/Devel/StackTrace.pm
-/usr/lib/perl5/site_perl/5.24.0/Devel/StackTrace/Frame.pm
+/usr/lib/perl5/site_perl/5.26.0/Devel/StackTrace.pm
+/usr/lib/perl5/site_perl/5.26.0/Devel/StackTrace/Frame.pm
 
 %files doc
 %defattr(-,root,root,-)
