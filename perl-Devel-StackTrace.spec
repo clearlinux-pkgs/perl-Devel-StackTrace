@@ -4,13 +4,14 @@
 #
 Name     : perl-Devel-StackTrace
 Version  : 2.03
-Release  : 8
-URL      : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
-Source0  : http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
+Release  : 9
+URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
+Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
 Summary  : 'An object representing a stack trace'
 Group    : Development/Tools
 License  : Artistic-2.0
-Requires: perl-Devel-StackTrace-doc
+Requires: perl-Devel-StackTrace-license
+Requires: perl-Devel-StackTrace-man
 
 %description
 # NAME
@@ -18,12 +19,20 @@ Devel::StackTrace - An object representing a stack trace
 # VERSION
 version 2.03
 
-%package doc
-Summary: doc components for the perl-Devel-StackTrace package.
-Group: Documentation
+%package license
+Summary: license components for the perl-Devel-StackTrace package.
+Group: Default
 
-%description doc
-doc components for the perl-Devel-StackTrace package.
+%description license
+license components for the perl-Devel-StackTrace package.
+
+
+%package man
+Summary: man components for the perl-Devel-StackTrace package.
+Group: Default
+
+%description man
+man components for the perl-Devel-StackTrace package.
 
 
 %prep
@@ -51,6 +60,8 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/perl-Devel-StackTrace
+cp LICENSE %{buildroot}/usr/share/doc/perl-Devel-StackTrace/LICENSE
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot}
 else
@@ -66,6 +77,11 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 /usr/lib/perl5/site_perl/5.26.1/Devel/StackTrace.pm
 /usr/lib/perl5/site_perl/5.26.1/Devel/StackTrace/Frame.pm
 
-%files doc
+%files license
 %defattr(-,root,root,-)
-%doc /usr/share/man/man3/*
+/usr/share/doc/perl-Devel-StackTrace/LICENSE
+
+%files man
+%defattr(-,root,root,-)
+/usr/share/man/man3/Devel::StackTrace.3
+/usr/share/man/man3/Devel::StackTrace::Frame.3
