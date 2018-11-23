@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-StackTrace
 Version  : 2.03
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
 Summary  : 'An object representing a stack trace'
@@ -75,8 +75,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/Devel/StackTrace.pm
-/usr/lib/perl5/vendor_perl/5.26.1/Devel/StackTrace/Frame.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Devel/StackTrace.pm
+/usr/lib/perl5/vendor_perl/5.28.0/Devel/StackTrace/Frame.pm
 
 %files dev
 %defattr(-,root,root,-)
