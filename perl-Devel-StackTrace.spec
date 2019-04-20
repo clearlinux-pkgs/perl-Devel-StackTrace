@@ -4,10 +4,10 @@
 #
 Name     : perl-Devel-StackTrace
 Version  : 2.03
-Release  : 18
+Release  : 19
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.03.tar.gz
-Summary  : 'An object representing a stack trace'
+Summary  : An object representing a stack trace
 Group    : Development/Tools
 License  : Artistic-2.0
 Requires: perl-Devel-StackTrace-license = %{version}-%{release}
@@ -23,6 +23,7 @@ version 2.03
 Summary: dev components for the perl-Devel-StackTrace package.
 Group: Development
 Provides: perl-Devel-StackTrace-devel = %{version}-%{release}
+Requires: perl-Devel-StackTrace = %{version}-%{release}
 
 %description dev
 dev components for the perl-Devel-StackTrace package.
