@@ -4,12 +4,14 @@
 #
 Name     : perl-Devel-StackTrace
 Version  : 2.04
-Release  : 22
+Release  : 23
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.04.tar.gz
-Summary  : An object representing a stack trace
+Summary  : 'An object representing a stack trace'
 Group    : Development/Tools
 License  : Artistic-2.0
+Requires: perl-Devel-StackTrace-license = %{version}-%{release}
+Requires: perl-Devel-StackTrace-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -23,20 +25,37 @@ Summary: dev components for the perl-Devel-StackTrace package.
 Group: Development
 Provides: perl-Devel-StackTrace-devel = %{version}-%{release}
 Requires: perl-Devel-StackTrace = %{version}-%{release}
-Requires: perl-Devel-StackTrace = %{version}-%{release}
 
 %description dev
 dev components for the perl-Devel-StackTrace package.
 
 
+%package license
+Summary: license components for the perl-Devel-StackTrace package.
+Group: Default
+
+%description license
+license components for the perl-Devel-StackTrace package.
+
+
+%package perl
+Summary: perl components for the perl-Devel-StackTrace package.
+Group: Default
+Requires: perl-Devel-StackTrace = %{version}-%{release}
+
+%description perl
+perl components for the perl-Devel-StackTrace package.
+
+
 %prep
 %setup -q -n Devel-StackTrace-2.04
+cd %{_builddir}/Devel-StackTrace-2.04
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -46,7 +65,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -54,6 +73,8 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Devel-StackTrace
+cp %{_builddir}/Devel-StackTrace-2.04/LICENSE %{buildroot}/usr/share/package-licenses/perl-Devel-StackTrace/05919092457d405d691079df2084f6f3eef31ade
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -66,10 +87,17 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Devel/StackTrace.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Devel/StackTrace/Frame.pm
 
 %files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Devel::StackTrace.3
 /usr/share/man/man3/Devel::StackTrace::Frame.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Devel-StackTrace/05919092457d405d691079df2084f6f3eef31ade
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Devel/StackTrace.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Devel/StackTrace/Frame.pm
