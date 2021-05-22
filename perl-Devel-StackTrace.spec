@@ -4,7 +4,7 @@
 #
 Name     : perl-Devel-StackTrace
 Version  : 2.04
-Release  : 27
+Release  : 28
 URL      : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/D/DR/DROLSKY/Devel-StackTrace-2.04.tar.gz
 Summary  : 'An object representing a stack trace'
